@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1028008241802",
+    "project_id": "ipssiprojet",
+    "storage_bucket": "ipssiprojet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028008241802:android:c12a128c36c48dd0041b73",
+        "android_client_info": {
+          "package_name": "com.example.ipssiflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028008241802-9h8cnh44uun63gcq1ju188grnnm81gn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAijS2oZXILYtW_5ZLliIRgDArv-k8SZGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028008241802-9h8cnh44uun63gcq1ju188grnnm81gn9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1028008241802-02j1tfhcbqe66d25emhnfd0h3e7p3oi7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ipssiprojet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
