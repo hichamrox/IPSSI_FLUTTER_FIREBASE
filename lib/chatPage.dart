@@ -18,10 +18,11 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   TextEditingController msgController = new TextEditingController();
+  final ScrollController controller = ScrollController();
   late String content;
 
-  clearTextInput() {
-    msgController.clear();
+  Future scrollToItem() async {
+    controller.jumpTo(controller.position.maxScrollExtent);
   }
 
   @override
@@ -55,7 +56,7 @@ class _ChatPageState extends State<ChatPage> {
             child: Row(
               children: [
                 Container(
-                  width: size.width * 0.7,
+                  width: size.width * 0.85,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
@@ -67,10 +68,6 @@ class _ChatPageState extends State<ChatPage> {
                       },
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.download, size: 30),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -84,11 +81,13 @@ class _ChatPageState extends State<ChatPage> {
                     };
                     FirestoreHelper().addMessage(uid, map);
                     msgController.text = "";
-                    setState(() {});
+                    setState(() {
+                      scrollToItem();
+                    });
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.message, size: 30),
+                    child: Icon(Icons.arrow_circle_right_rounded, size: 30),
                   ),
                 )
               ],
@@ -115,40 +114,78 @@ class _ChatPageState extends State<ChatPage> {
                 messages.add(msg);
               }
             });
-            // messages.sort(((a, b) => a.date.compareTo(b.date)));
+            messages.sort(((a, b) => a.date.compareTo(b.date)));
 
-            return ListView.builder(
-                itemCount: messages.length,
-                itemBuilder: (context, index) {
-                  if (monProfil.uid == messages[index].uidSender) {
-                    return Card(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(messages[index].content),
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundImage: NetworkImage(monProfil.logo!),
-                          )
-                        ],
-                      ),
-                    );
-                  } else if (monProfil.uid == messages[index].uidRecever) {
-                    return Card(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            radius: 12,
-                            backgroundImage: NetworkImage(widget.user.logo!),
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.75,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  controller: controller,
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    if (monProfil.uid == messages[index].uidSender) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Flexible(
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width *
+                                              0.8),
+                                  child: Container(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        messages[index].content,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              CircleAvatar(
+                                radius: 12,
+                                backgroundImage: NetworkImage(monProfil.logo!),
+                              )
+                            ],
                           ),
-                          Text(messages[index].content)
-                        ],
-                      ),
-                    );
-                  }
-                  return Container();
-                });
+                        ),
+                      );
+                    } else if (monProfil.uid == messages[index].uidRecever) {
+                      return Card(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            CircleAvatar(
+                              radius: 12,
+                              backgroundImage: NetworkImage(widget.user.logo!),
+                            ),
+                            Flexible(
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                    maxWidth:
+                                        MediaQuery.of(context).size.width *
+                                            0.8),
+                                child: Container(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      messages[index].content,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                    return Container();
+                  }),
+            );
           }
         });
   }

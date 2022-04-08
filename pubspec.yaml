@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^10.2.10
   file_picker: ^4.5.1
   uuid: ^3.0.6
+  scrollable_positioned_list: ^0.2.3
 
 dev_dependencies:
   flutter_test:
