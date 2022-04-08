@@ -22,7 +22,7 @@ class _ChatPageState extends State<ChatPage> {
   late String content;
 
   Future scrollToItem() async {
-    controller.jumpTo(controller.position.maxScrollExtent);
+    controller.jumpTo(controller.position.maxScrollExtent * 1.5);
   }
 
   @override
