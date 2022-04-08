@@ -1,3 +1,6 @@
+import 'package:ipssiflutter/model/message.dart';
+
 import '../model/utilisateur.dart';
 
-late Utilisateur monProfil;
+Utilisateur monProfil = Utilisateur.vide();
+late Message monMessage;

@@ -3,12 +3,14 @@ import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ipssiflutter/model/message.dart';
 
 import '../model/utilisateur.dart';
 
 class FirestoreHelper {
   final auth = FirebaseAuth.instance;
   final fire_user = FirebaseFirestore.instance.collection("Users");
+  final fire_message = FirebaseFirestore.instance.collection("Messages");
   final fire_storage = FirebaseStorage.instance;
 
   //Methode pour l'inscription
@@ -33,6 +35,10 @@ class FirestoreHelper {
     fire_user.doc(uid).set(map);
   }
 
+  addMessage(String uid, Map<String, dynamic> map) {
+    fire_message.doc(uid).set(map);
+  }
+
   updateUser(String uid, Map<String, dynamic> map) {
     fire_user.doc(uid).update(map);
   }
@@ -44,6 +50,11 @@ class FirestoreHelper {
   Future<Utilisateur> getUtilisateur(String uid) async {
     DocumentSnapshot snapshot = await fire_user.doc(uid).get();
     return Utilisateur(snapshot);
+  }
+
+  Future<Message> getMessage(String uid) async {
+    DocumentSnapshot snapshot = await fire_user.doc(uid).get();
+    return Message(snapshot);
   }
 
   Future<String> stockage(String name, Uint8List bytes) async {

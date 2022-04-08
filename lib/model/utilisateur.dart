@@ -14,4 +14,10 @@ class Utilisateur {
     uid = map["UID"];
     logo = map["LOGO"];
   }
+  Utilisateur.vide() {
+    uid = "";
+    nom = "";
+    prenom = "";
+    logo = "";
+  }
 }
