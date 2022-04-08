@@ -62,29 +62,26 @@ class _ChatPageState extends State<ChatPage> {
                     child: TextField(
                       decoration: InputDecoration(hintText: "Write message"),
                       controller: msgController,
-                      onChanged: (value) {
-                        setState(() {
-                          content = value;
-                        });
-                      },
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    String uid = Uuid().v1();
-                    Map<String, dynamic> map = {
-                      "UIDRECEVER": widget.user.uid,
-                      "UIDSENDER": monProfil.uid,
-                      "UID": uid,
-                      "CONTENT": content,
-                      "DATE": DateTime.now()
-                    };
-                    FirestoreHelper().addMessage(uid, map);
-                    msgController.clear();
-                    setState(() {
-                      scrollToItem();
-                    });
+                    if (msgController.text.isNotEmpty) {
+                      String uid = Uuid().v1();
+                      Map<String, dynamic> map = {
+                        "UIDRECEVER": widget.user.uid,
+                        "UIDSENDER": monProfil.uid,
+                        "UID": uid,
+                        "CONTENT": msgController.text,
+                        "DATE": DateTime.now()
+                      };
+                      FirestoreHelper().addMessage(uid, map);
+                      msgController.clear();
+                      setState(() {
+                        scrollToItem();
+                      });
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
