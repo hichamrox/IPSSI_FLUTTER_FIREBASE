@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ipssiflutter/library/constants.dart';
 import 'package:ipssiflutter/model/message.dart';
@@ -18,7 +19,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   TextEditingController msgController = new TextEditingController();
-  final ScrollController controller = ScrollController();
+  late ScrollController controller = ScrollController();
   late String content;
 
   Future scrollToItem() async {
@@ -44,7 +45,26 @@ class _ChatPageState extends State<ChatPage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.user.prenom),
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: CircleAvatar(
+                radius: 20,
+                backgroundImage: NetworkImage(widget.user.logo!),
+              ),
+            ),
+            Column(
+              children: [
+                Text(widget.user.prenom),
+                Text(
+                  "en ligne",
+                  style: TextStyle(fontSize: 10),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
       body: bodyPage(),
       bottomSheet: Container(
