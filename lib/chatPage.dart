@@ -29,6 +29,11 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
+    if (controller.hasClients) {
+      final position = controller.position.maxScrollExtent;
+      controller.jumpTo(position);
+    }
+    ;
     msgController.addListener(() {
       setState(() {}); // setState every time text changes
     });
@@ -141,7 +146,6 @@ class _ChatPageState extends State<ChatPage> {
             return Container(
               height: MediaQuery.of(context).size.height * 0.75,
               child: ListView.builder(
-                  shrinkWrap: true,
                   controller: controller,
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
@@ -232,6 +236,7 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                       );
                     }
+
                     return Container();
                   }),
             );

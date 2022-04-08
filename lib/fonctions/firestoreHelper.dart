@@ -30,6 +30,10 @@ class FirestoreHelper {
         await auth.signInWithEmailAndPassword(email: mail, password: password);
   }
 
+  Future disconnect() async {
+    await auth.signOut();
+  }
+
   //Méthode pour enregistrer dans la base de donnée
   addUser(String uid, Map<String, dynamic> map) {
     fire_user.doc(uid).set(map);

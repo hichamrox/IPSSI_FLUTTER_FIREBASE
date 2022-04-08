@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:ipssiflutter/library/constants.dart';
+import 'package:ipssiflutter/main.dart';
 
 import '../fonctions/firestoreHelper.dart';
 
@@ -147,7 +148,19 @@ class myDrawerState extends State<myDrawer> {
         ),
 
         //Nom et le prénom
-        Text("${monProfil.prenom} ${monProfil.nom}")
+        Text("${monProfil.prenom} ${monProfil.nom}"),
+
+        ElevatedButton(
+            // ignore: prefer_const_constructor
+            onPressed: () {
+              FirestoreHelper().disconnect();
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MyHomePage(
+                  title: "Au revoir " + monProfil.prenom,
+                );
+              }));
+            },
+            child: Text("log out"))
       ],
     );
   }
