@@ -126,28 +126,37 @@ class _ChatPageState extends State<ChatPage> {
                     if (monProfil.uid == messages[index].uidSender) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Card(
+                        child: Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Flexible(
-                                child: ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.8),
-                                  child: Container(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        messages[index].content,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Flexible(
+                                  child: ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                        maxWidth:
+                                            MediaQuery.of(context).size.width *
+                                                0.8),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Color.fromARGB(
+                                              255, 93, 173, 238)),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          messages[index].content,
+                                          style: TextStyle(fontSize: 20),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
                               CircleAvatar(
-                                radius: 12,
+                                radius: 15,
                                 backgroundImage: NetworkImage(monProfil.logo!),
                               )
                             ],
@@ -155,25 +164,37 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                       );
                     } else if (monProfil.uid == messages[index].uidRecever) {
-                      return Card(
+                      return Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            CircleAvatar(
-                              radius: 12,
-                              backgroundImage: NetworkImage(widget.user.logo!),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundImage:
+                                    NetworkImage(widget.user.logo!),
+                              ),
                             ),
-                            Flexible(
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(
-                                    maxWidth:
-                                        MediaQuery.of(context).size.width *
-                                            0.8),
-                                child: Container(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      messages[index].content,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Flexible(
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width *
+                                              0.8),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color:
+                                            Color.fromARGB(255, 216, 213, 213)),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        messages[index].content,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                     ),
                                   ),
                                 ),
