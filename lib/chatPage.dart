@@ -159,26 +159,22 @@ class _ChatPageState extends State<ChatPage> {
                               Text(messages[index].date.hour.toString() +
                                   ":" +
                                   messages[index].date.minute.toString()),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Flexible(
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                        maxWidth:
-                                            MediaQuery.of(context).size.width *
-                                                0.6),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Color.fromARGB(
-                                              255, 93, 173, 238)),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Text(
-                                          messages[index].content,
-                                          style: TextStyle(fontSize: 20),
-                                        ),
+                              Flexible(
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width *
+                                              0.6),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color:
+                                            Color.fromARGB(255, 93, 173, 238)),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        messages[index].content,
+                                        style: TextStyle(fontSize: 20),
                                       ),
                                     ),
                                   ),
@@ -208,25 +204,22 @@ class _ChatPageState extends State<ChatPage> {
                                       : NetworkImage(
                                           "https://firebasestorage.googleapis.com/v0/b/projetsqyavril2022.appspot.com/o/noImage.png?alt=media&token=dc26627a-5c9f-491b-8529-c8b44bfad00a")),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Flexible(
-                                child: ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.6),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color:
-                                            Color.fromARGB(255, 216, 213, 213)),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        messages[index].content,
-                                        style: TextStyle(fontSize: 20),
-                                      ),
+                            Flexible(
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                    maxWidth:
+                                        MediaQuery.of(context).size.width *
+                                            0.6),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color:
+                                          Color.fromARGB(255, 216, 213, 213)),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      messages[index].content,
+                                      style: TextStyle(fontSize: 20),
                                     ),
                                   ),
                                 ),
