@@ -19,7 +19,9 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   TextEditingController msgController = new TextEditingController();
-  late ScrollController controller = ScrollController();
+
+  final ScrollController controller =
+      ScrollController(initialScrollOffset: 10000);
   late String content;
 
   Future scrollToItem() async {
@@ -29,11 +31,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    if (controller.hasClients) {
-      final position = controller.position.maxScrollExtent;
-      controller.jumpTo(position);
-    }
-    ;
+
     msgController.addListener(() {
       setState(() {}); // setState every time text changes
     });
@@ -52,13 +50,15 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundImage: NetworkImage(widget.user.logo!),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 15),
+            //   child: (widget.user.logo! != null)
+            //       ? CircleAvatar(
+            //           radius: 20,
+            //           backgroundImage: NetworkImage(widget.user.logo),
+            //         )
+            //       : Container(),
+            // ),
             Column(
               children: [
                 Text(widget.user.prenom),
