@@ -50,15 +50,15 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 15),
-            //   child: (widget.user.logo! != null)
-            //       ? CircleAvatar(
-            //           radius: 20,
-            //           backgroundImage: NetworkImage(widget.user.logo),
-            //         )
-            //       : Container(),
-            // ),
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: (widget.user.logo != null)
+                      ? NetworkImage(widget.user.logo!)
+                      : NetworkImage(
+                          "https://firebasestorage.googleapis.com/v0/b/projetsqyavril2022.appspot.com/o/noImage.png?alt=media&token=dc26627a-5c9f-491b-8529-c8b44bfad00a")),
+            ),
             Column(
               children: [
                 Text(widget.user.prenom),
@@ -185,9 +185,11 @@ class _ChatPageState extends State<ChatPage> {
                                 ),
                               ),
                               CircleAvatar(
-                                radius: 15,
-                                backgroundImage: NetworkImage(monProfil.logo!),
-                              ),
+                                  radius: 15,
+                                  backgroundImage: (monProfil.logo != null)
+                                      ? NetworkImage(monProfil.logo!)
+                                      : NetworkImage(
+                                          "https://firebasestorage.googleapis.com/v0/b/projetsqyavril2022.appspot.com/o/noImage.png?alt=media&token=dc26627a-5c9f-491b-8529-c8b44bfad00a"))
                             ],
                           ),
                         ),
@@ -200,10 +202,11 @@ class _ChatPageState extends State<ChatPage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: CircleAvatar(
-                                radius: 15,
-                                backgroundImage:
-                                    NetworkImage(widget.user.logo!),
-                              ),
+                                  radius: 15,
+                                  backgroundImage: (widget.user.logo != null)
+                                      ? NetworkImage(widget.user.logo!)
+                                      : NetworkImage(
+                                          "https://firebasestorage.googleapis.com/v0/b/projetsqyavril2022.appspot.com/o/noImage.png?alt=media&token=dc26627a-5c9f-491b-8529-c8b44bfad00a")),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
