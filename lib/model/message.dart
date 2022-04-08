@@ -5,6 +5,7 @@ class Message {
   late String uidSender;
   late String uidRecever;
   late String content;
+  late DateTime date;
 
   Message(DocumentSnapshot snapshot) {
     uid = snapshot.id;
@@ -13,5 +14,7 @@ class Message {
     uidSender = map["UIDSENDER"];
     content = map["CONTENT"];
     uid = map["UID"];
+    Timestamp timestamp = map["DATE"];
+    date = timestamp.toDate();
   }
 }

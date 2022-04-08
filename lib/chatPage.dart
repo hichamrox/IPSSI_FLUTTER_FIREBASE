@@ -79,7 +79,8 @@ class _ChatPageState extends State<ChatPage> {
                       "UIDRECEVER": widget.user.uid,
                       "UIDSENDER": monProfil.uid,
                       "UID": uid,
-                      "CONTENT": content
+                      "CONTENT": content,
+                      "DATE": DateTime.now()
                     };
                     FirestoreHelper().addMessage(uid, map);
                     msgController.text = "";
@@ -104,20 +105,46 @@ class _ChatPageState extends State<ChatPage> {
             return const CircularProgressIndicator();
           } else {
             List documents = snapshot.data!.docs;
-            List messages;
+            List<Message> messages = [];
+            documents.forEach((element) {
+              Message msg = Message(element);
+              if (((monProfil.uid == msg.uidSender) &
+                      (widget.user.uid == msg.uidRecever)) |
+                  ((monProfil.uid == msg.uidRecever) &
+                      (widget.user.uid == msg.uidSender))) {
+                messages.add(msg);
+              }
+            });
+            // messages.sort(((a, b) => a.date.compareTo(b.date)));
 
             return ListView.builder(
-                itemCount: documents.length,
+                itemCount: messages.length,
                 itemBuilder: (context, index) {
-                  Message msg = Message(documents[index]);
-
-                  if (monProfil.uid == msg.uidSender) {
+                  if (monProfil.uid == messages[index].uidSender) {
                     return Card(
-                      child: Text(msg.content),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(messages[index].content),
+                          CircleAvatar(
+                            radius: 12,
+                            backgroundImage: NetworkImage(monProfil.logo!),
+                          )
+                        ],
+                      ),
                     );
-                  } else if (monProfil.uid == msg.uidSender) {
+                  } else if (monProfil.uid == messages[index].uidRecever) {
                     return Card(
-                      child: Text(msg.content),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            radius: 12,
+                            backgroundImage: NetworkImage(widget.user.logo!),
+                          ),
+                          Text(messages[index].content)
+                        ],
+                      ),
                     );
                   }
                   return Container();
