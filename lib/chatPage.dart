@@ -81,7 +81,7 @@ class _ChatPageState extends State<ChatPage> {
                       "DATE": DateTime.now()
                     };
                     FirestoreHelper().addMessage(uid, map);
-                    msgController.text = "";
+                    msgController.clear();
                     setState(() {
                       scrollToItem();
                     });
