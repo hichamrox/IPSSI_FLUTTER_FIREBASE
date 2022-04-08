@@ -104,10 +104,13 @@ class _ChatPageState extends State<ChatPage> {
             return const CircularProgressIndicator();
           } else {
             List documents = snapshot.data!.docs;
+            List messages;
+
             return ListView.builder(
                 itemCount: documents.length,
                 itemBuilder: (context, index) {
                   Message msg = Message(documents[index]);
+
                   if (monProfil.uid == msg.uidSender) {
                     return Card(
                       child: Text(msg.content),
