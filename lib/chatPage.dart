@@ -60,6 +60,7 @@ class _ChatPageState extends State<ChatPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      decoration: InputDecoration(hintText: "Write message"),
                       controller: msgController,
                       onChanged: (value) {
                         setState(() {
@@ -87,7 +88,11 @@ class _ChatPageState extends State<ChatPage> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_circle_right_rounded, size: 30),
+                    child: Icon(
+                      Icons.send,
+                      size: 30,
+                      color: Colors.blue,
+                    ),
                   ),
                 )
               ],
@@ -130,6 +135,9 @@ class _ChatPageState extends State<ChatPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              Text(messages[index].date.hour.toString() +
+                                  ":" +
+                                  messages[index].date.minute.toString()),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Flexible(
@@ -137,7 +145,7 @@ class _ChatPageState extends State<ChatPage> {
                                     constraints: BoxConstraints(
                                         maxWidth:
                                             MediaQuery.of(context).size.width *
-                                                0.8),
+                                                0.6),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -158,7 +166,7 @@ class _ChatPageState extends State<ChatPage> {
                               CircleAvatar(
                                 radius: 15,
                                 backgroundImage: NetworkImage(monProfil.logo!),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -183,7 +191,7 @@ class _ChatPageState extends State<ChatPage> {
                                   constraints: BoxConstraints(
                                       maxWidth:
                                           MediaQuery.of(context).size.width *
-                                              0.8),
+                                              0.6),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -199,7 +207,10 @@ class _ChatPageState extends State<ChatPage> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
+                            Text(messages[index].date.hour.toString() +
+                                ":" +
+                                messages[index].date.minute.toString())
                           ],
                         ),
                       );
